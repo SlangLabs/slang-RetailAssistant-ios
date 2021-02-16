@@ -4,11 +4,11 @@ This repository contains releases for the Slang Retail Assistant for iOS SDK. Th
 
 ### Swift Package Manager
 
-You can add Slang Retail Assistant for iOS by adding the `https://github.com/SlangLabs/slang-retailAssistant-ios` repository as a Swift Package. 
+You can add Slang Retail Assistant for iOS by adding the `https://github.com/SlangLabs/slang-retail-assistant-ios` repository as a Swift Package. 
     
 ### CocoaPods
 
-It's easy to install the Voice framework if you manage your dependencies using [CocoaPods](http://cocoapods.org). Simply add the following to your `Podfile`:
+It's easy to install the Retail Assistant framework if you manage your dependencies using [CocoaPods](http://cocoapods.org). Simply add the following to your `Podfile`:
 
 ~~~.rb
 source 'https://github.com/SlangLabs/cocoapod-specs.git'
