@@ -43,7 +43,7 @@ SlangRetailAssistant.translateText(
   "टमाटर",
   sourceLocale: locale,
   targetLocale: Locale(identifier: "en-IN")) {
-  (translatedText, error)  in
+  (translatedText, translationError)  in
     if error != nil {
         print(error)
          return
@@ -53,6 +53,57 @@ SlangRetailAssistant.translateText(
     }
 }
 ~~~
+
+## TranslateAPI Declaration :
+
+~~~.swift
+func translateText(_ sourceText: String, 
+sourceLocale: Locale, targetLocale: Locale,
+completionHandler: @escaping (String?, TranslationError?) -> Void)
+~~~
+
+## TranslateAPI Parameters :
+
+`sourceText`  <br/>The source string that needs to be translated.
+
+`sourceLocale`  <br/>Locale specification of the source string.
+
+`targetLocale` <br/>The target Locale specification for the translation request.
+
+`completionHandler` <br/>
+The completion handler to call when the translate request is complete. 
+
+The handler takes the following parameters :
+
+`translatedText` <br/>
+The translated text of type `string`. It will be `nil` if the translation request has failed.
+
+`translationError` <br/>
+A `TranslationError` object that indicates why the request failed, or nil if the request was successful. 
+<br/>
+<br/>
+## TranslationError :
+The translation error object is special type of error object which indicates what is the type of error and its description.
+
+The error object contains the following : <br/>
+
+`errorDescription` <br/> 
+A localized message describing what error occurred.
+
+`type` <br/>
+A `TranslationErrorType` enum that indicates the type of failure.
+<br/>
+
+### `TranslationErrorType` :
+The TranslationErrorType is enum which describes the type of error.
+
+The enum contains the following : <br/>
+
+`localeNotSupported` <br/> 
+A localized message describing what error occurred.
+
+`networkError` <br/>
+A `TranslationErrorType` enum that indicates the type of failure.
 
 <br/>
 
