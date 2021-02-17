@@ -35,6 +35,17 @@ SlangRetailAssistant.initialize(
 )
 ~~~
 
+Note : You can also alternatively specify the assistant version and environment.
+~~~.rb
+SlangRetailAssistant.initialize(
+  "<AssistantId>",
+  apiKey: "<APIKey>",
+  environment: <environment>, //use .staging or .prod
+  assistantVersion: "<assistantVersionString"> //like 2.0.1
+)
+~~~
+If not specified defaults to latest version and prod environment.
+
 - Perform the translation operation via the translate API
 ~~~.rb
 let locale: Locale = Locale.init(identifier: "hi-IN")
