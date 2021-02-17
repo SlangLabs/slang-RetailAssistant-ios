@@ -10,7 +10,7 @@ You can add Slang Retail Assistant for iOS by adding the `https://github.com/Sla
 
 It's easy to install the Retail Assistant framework if you manage your dependencies using [CocoaPods](http://cocoapods.org). Simply add the following to your `Podfile`:
 
-~~~.rb
+```
 source 'https://github.com/SlangLabs/cocoapod-specs.git'
 
 target 'TARGET_NAME' do
@@ -18,7 +18,7 @@ target 'TARGET_NAME' do
 
   pod 'SlangRetailAssistant', '~> 1.0.0'
 end
-~~~
+```
 
 Then run `pod install --verbose` to install the dependencies to your project.
 ## Usage Instructions
@@ -28,16 +28,16 @@ import slang_retail_assistant
 ~~~
 
 - Initialize the SlangRetailAssistant
-~~~.rb
+```
 SlangRetailAssistant.initialize(
   "<AssistantId>",
   apiKey: "<APIKey>",
-  environment: .staging // Change this to .production once you've published the Assistant to production environment 
+  environment: .staging // Change this to .production once you've published the Assistant to production environment
 )
-~~~
+```
 
 - Perform the translation operation via the translate API
-~~~.rb
+```
 let locale: Locale = Locale.init(identifier: "hi-IN")
 SlangRetailAssistant.translateText(
   "टमाटर",
@@ -52,7 +52,7 @@ SlangRetailAssistant.translateText(
         print(translatedText)
     }
 }
-~~~
+```
 
 <br/>
 
