@@ -32,7 +32,7 @@ import slang_retail_assistant
 SlangRetailAssistant.initialize(
   "<AssistantId>",
   apiKey: "<APIKey>",
-  environment: <environment> //use .staging or .prod
+  environment: .staging // Change this to .production once you've published the Assistant to production environment 
 )
 ~~~
 
