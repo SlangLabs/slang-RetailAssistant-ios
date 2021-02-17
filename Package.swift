@@ -22,7 +22,7 @@ let package = Package(
         .binaryTarget(
             name: "slang_retail_assistant",
             url: "https://iosbinary.s3.ap-south-1.amazonaws.com/slang_retail_assistant/1.0.0/slang_retail_assistant.xcframework.zip",
-            checksum: "2f06dfb8f9c6f04f6dc688f36d5b3b19982c1e96f1078f7caf2a9a0d64d51e0c"
+            checksum: "67fec55e12b37c2f02300afe54a62046ef511eb88e57099e4339df4320cce9a3"
         )
     ]
 )
