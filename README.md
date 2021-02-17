@@ -31,11 +31,12 @@ import slang_retail_assistant
 ~~~.rb
 SlangRetailAssistant.initialize(
   "<AssistantId>",
-  apiKey: "<APIKey>"
+  apiKey: "<APIKey>",
+  environment: <environment> //use .staging or .prod
 )
 ~~~
 
-Note : You can also alternatively specify the assistant version and environment.
+Note : You can also alternatively specify the assistant version. (when required)
 ~~~.rb
 SlangRetailAssistant.initialize(
   "<AssistantId>",
@@ -44,7 +45,7 @@ SlangRetailAssistant.initialize(
   assistantVersion: "<assistantVersionString"> //like 2.0.1
 )
 ~~~
-If not specified defaults to latest version and prod environment.
+If not specified defaults to latest version.
 
 - Perform the translation operation via the translate API
 ~~~.rb
