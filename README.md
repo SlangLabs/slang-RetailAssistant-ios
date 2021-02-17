@@ -30,7 +30,7 @@ import slang_retail_assistant
 - Initialize the SlangRetailAssistant
 ~~~.swift
 SlangRetailAssistant.initialize(
-  "<AssistantId>",
+  with: "<AssistantId>",
   apiKey: "<APIKey>",
   environment: .staging //Change this to .production once you've published the Assistant to production environment
 )
@@ -40,7 +40,7 @@ SlangRetailAssistant.initialize(
 ~~~.swift
 let locale: Locale = Locale.init(identifier: "hi-IN")
 SlangRetailAssistant.translateText(
-  "टमाटर",
+  for: "टमाटर",
   sourceLocale: locale,
   targetLocale: Locale(identifier: "en-IN")) {
   (translatedText, translationError)  in
@@ -57,7 +57,7 @@ SlangRetailAssistant.translateText(
 ## TranslateAPI Declaration :
 
 ~~~.swift
-func translateText(_ sourceText: String, 
+func translateText(for text: String, 
 sourceLocale: Locale, targetLocale: Locale,
 completionHandler: @escaping (String?, TranslationError?) -> Void)
 ~~~
@@ -81,7 +81,6 @@ The translated text of type `string`. It will be `nil` if the translation reques
 `translationError` <br/>
 A `TranslationError` object that indicates why the request failed, or nil if the request was successful. 
 <br/>
-<br/>
 ## TranslationError :
 The translation error object is special type of error object which indicates what is the type of error and its description.
 
@@ -93,19 +92,90 @@ A localized message describing what error occurred.
 `type` <br/>
 A `TranslationErrorType` enum that indicates the type of failure.
 <br/>
-
 ### `TranslationErrorType` :
 The TranslationErrorType is enum which describes the type of error.
 
-The enum contains the following : <br/>
+The enum contains the following cases : <br/>
 
 `localeNotSupported` <br/> 
+This case signifies that either the source or destination locale were incorrect. <br/>
+Note : <br/>
+- Destination locale language code needs to be `en`.
+- Source locale language code should not be `en`.
+
+`networkError(_ error: SlangNetworkError)` <br/>
+This case signifies that there was a network error, But additionally it provides another error object `SlangNetworkError` which specifies what exactly the network was.
+
+## SlangNetworkError :
+The network error object is special type of error object which indicates what is the type of network error and its description.
+
+The error object contains the following : <br/>
+
+`errorDescription` <br/> 
 A localized message describing what error occurred.
 
-`networkError` <br/>
-A `TranslationErrorType` enum that indicates the type of failure.
+`type` <br/>
+A `SlangNetworkErrorType` enum that indicates the type of failure.
+<br/>
+### `SlangNetworkErrorType` :
+The SlangNetworkErrorType is enum which describes the type of network error.
 
+The enum contains the following cases : <br/>
+
+`unauthorized` <br/> 
+This case indicates that the current assistant is unauthorized.<br/>
+
+`serializationFailed` <br/> 
+This indicates that an internal searlization of the request data has failed<br/>
+
+`deserializationFailed` <br/> 
+This indicates that an internal deserialization of the response data has failed<br/>
+
+`networkError` <br/> 
+This indicates that there has been an internal network error<br/>
 <br/>
 
+### Typical Error Parsing Construct
+~~~.swift
+let locale: Locale = Locale.init(identifier: "hi-IN")
+SlangRetailAssistant.translateText(
+  "टमाटर",
+  sourceLocale: locale,
+  targetLocale: Locale(identifier: "en-IN")) {
+  (translatedText, translationError)  in
+    if error != nil {
+      switch error?.type {
+        case .localeNotSupported :
+        //localeNotSupported error reported
+        break
+        case .networkError(let error) :
+        //networkError error thrown
+        switch error.type {
+          case .serializationFailed:
+          //serializationFailed networkError error reported
+          break
+          case .deserializationFailed:
+          /deserializationFailed networkError error reported
+          break
+          case .unauthorized:
+          //unauthorized networkError error reported
+          break
+          case .networkError:
+          //internalError networkError error reported
+          break
+        }
+        break
+        case .none:
+          break
+      }
+      print(error)
+      return
+    }
+    if let translatedText = translatedText {
+        print(translatedText)
+    }
+}
+~~~
+
 ## License
-Copyright (c) 2017-2019 Slang Labs Private Limited. All rights reserved.
+Copyright (c) 2017-2021 Slang Labs Private Limited. All rights reserved.
