@@ -16,7 +16,7 @@ source 'https://github.com/SlangLabs/cocoapod-specs.git'
 target 'TARGET_NAME' do
   use_frameworks!
 
-  pod 'SlangRetailAssistant', '~> 1.0.0'
+  pod 'SlangRetailAssistant', '~> 4.0.0'
 end
 ~~~
 
@@ -139,7 +139,7 @@ This indicates that there has been an internal network error<br/>
 ~~~.swift
 let locale: Locale = Locale.init(identifier: "hi-IN")
 SlangRetailAssistant.translateText(
-  "टमाटर",
+  for: "टमाटर",
   sourceLocale: locale,
   targetLocale: Locale(identifier: "en-IN")) {
   (translatedText, translationError)  in
