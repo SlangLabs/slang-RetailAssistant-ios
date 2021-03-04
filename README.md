@@ -44,8 +44,8 @@ SlangRetailAssistant.translateText(
   sourceLocale: locale,
   targetLocale: Locale(identifier: "en-IN")) {
   (translatedText, translationError)  in
-    if error != nil {
-        print(error)
+    if translationError != nil {
+        print(translationError)
          return
     }
     if let translatedText = translatedText {
